@@ -43,7 +43,12 @@ jobs:
         os: ${{ matrix.os }}
         upload: true
 
-    #- name: Release the binary
-      #uses: ncipollo/release-action@v1
-      #with:
-        #artifacts: "build-*"
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact
+      - name: Release the binary
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build-*"
