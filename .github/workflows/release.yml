@@ -47,7 +47,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact
+      - uses: actions/download-artifact@v3
+      
+      - name: Inspect directory after downloading artifacts
+        run: ls -alFR
+
       - name: Release the binary
         uses: ncipollo/release-action@v1
         with:
