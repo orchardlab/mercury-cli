@@ -32,17 +32,18 @@ jobs:
       run: npm install
 
     - name: Build the binary
-      run: npm run build && npm run package
+      run: npm run build 
 
-    #- name: Package into node binary
-      #uses: lando/pkg-action@v2
-      #with:
-        #entrypoint: build.cjs
-        #arch: ${{ matrix.arch }}
-        #node-version: ${{ matrix.node-version }}
-        #os: ${{ matrix.os }}
-
-    - name: Release the binary
-      uses: ncipollo/release-action@v1
+    - name: Package into node binary
+      uses: lando/pkg-action@v2
       with:
-        artifacts: "build-*"
+        entrypoint: build.cjs
+        arch: ${{ matrix.arch }}
+        node-version: ${{ matrix.node-version }}
+        os: ${{ matrix.os }}
+        upload: true
+
+    #- name: Release the binary
+      #uses: ncipollo/release-action@v1
+      #with:
+        #artifacts: "build-*"
